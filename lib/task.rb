@@ -7,8 +7,12 @@ class Task
     @id = attributes.fetch(:id, nil)
   end
 
-  define_singleton_method(:all) do
-    returned_tasks = DB.exec("SELECT * FROM tasks;")
+  define_singleton_method(:all) do |list_id = nil|
+    if list_id == nil
+      returned_tasks = DB.exec("SELECT * FROM tasks;")
+    else
+      returned_tasks = DB.exec("SELECT * FROM tasks WHERE list_id=#{list_id}")
+    end
     tasks = []
     returned_tasks.each() do |task|
       description = task.fetch("description")
@@ -20,7 +24,7 @@ class Task
   end
 
   define_method(:save) do
-    result = DB.exec("INSERT INTO tasks (description, list_id) VALUES ('#{@description}' ,#{@list_id}) RETURNING id;")
+    result = DB.exec("INSERT INTO tasks (description, list_id) VALUES ('#{@description}', #{@list_id}) RETURNING id;")
     @id = result.first().fetch("id").to_i()
   end
 
