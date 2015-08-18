@@ -1,0 +1,12 @@
+<h2>All the stuff you have to do.</h2>
+
+<ul>
+  <% @lists.each() do |list| %>
+  <li><%= list.name() %></li>
+  <% end %>
+</ul>
+
+<form action="/list/add" method="post">
+  <input name="name" type="text" placeholder="To List Name (ie. Work / Chores / etc)">
+  <button type="submit">Add List</button>
+</form>

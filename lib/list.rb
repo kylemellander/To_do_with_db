@@ -3,7 +3,7 @@ class List
 
   define_method(:initialize) do |attributes|
     @name = attributes.fetch(:name)
-    @id = attributes.fetch(:id)
+    @id = attributes.fetch(:id, nil)
   end
 
   define_singleton_method(:all) do

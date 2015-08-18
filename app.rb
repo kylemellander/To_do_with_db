@@ -11,3 +11,10 @@ get('/') do
   @lists = List.all()
   erb(:index)
 end
+
+post('/list/add') do
+  name = params.fetch("name")
+  List.new({:name => name}).save()
+  @lists = List.all()
+  erb(:index)
+end
