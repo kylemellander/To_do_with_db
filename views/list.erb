@@ -1,0 +1,17 @@
+<% if @success_message != nil %>
+<div class="success"><%= @success_message %></div>
+<% end %>
+
+<h2><%= @list.name() %></h2>
+<h4>All the little things...</h4>
+
+<ul>
+<% @tasks.each() do |task| %>
+  <li><%= task.description() %></li>
+<% end %>
+</ul>
+
+<form action="/list/<%= @list.id() %>/task/add" method="post">
+  <input type="text" name="description" placeholder="Task (ie. Buy Milk)">
+  <button type="submit">Add Task</button>
+</form>

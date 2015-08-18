@@ -23,4 +23,13 @@ describe('the path of lists', {:type => :feature}) do
     click_link("Honey Dew")
     expect(page).to have_content("All the little things...")
   end
+
+  it('fills out add task form and it is added to list page') do
+    List.new({:name => "Honey Dew"}).save()
+    visit('/')
+    click_link("Honey Dew")
+    fill_in('description', :with => "Buy Milk")
+    click_button('Add Task')
+    expect(page).to have_content("Buy Milk")
+  end
 end
