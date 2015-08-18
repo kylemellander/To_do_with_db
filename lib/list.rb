@@ -6,8 +6,12 @@ class List
     @id = attributes.fetch(:id, nil)
   end
 
-  define_singleton_method(:all) do
-    returned_lists = DB.exec("SELECT * FROM lists;")
+  define_singleton_method(:all) do |id = nil|
+    if id == nil
+      returned_lists = DB.exec("SELECT * FROM lists;")
+    else
+      returned_lists = DB.exec("SELECT * FROM lists WHERE id=#{id};")
+    end
     lists = []
     returned_lists.each() do |list|
       name = list.fetch("name")

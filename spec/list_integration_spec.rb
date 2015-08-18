@@ -16,4 +16,11 @@ describe('the path of lists', {:type => :feature}) do
     click_button('Add List')
     expect(page).to have_content("Honey Dew")
   end
+
+  it('it displays tasks in a list') do
+    List.new({:name => "Honey Dew"}).save()
+    visit('/')
+    click_link("Honey Dew")
+    expect(page).to have_content("All the little things...")
+  end
 end

@@ -11,7 +11,7 @@ class Task
     if list_id == nil
       returned_tasks = DB.exec("SELECT * FROM tasks;")
     else
-      returned_tasks = DB.exec("SELECT * FROM tasks WHERE list_id=#{list_id}")
+      returned_tasks = DB.exec("SELECT * FROM tasks WHERE list_id=#{list_id};")
     end
     tasks = []
     returned_tasks.each() do |task|

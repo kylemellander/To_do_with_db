@@ -16,5 +16,13 @@ post('/list/add') do
   name = params.fetch("name")
   List.new({:name => name}).save()
   @lists = List.all()
+  @success_message = "#{name} was added."
   erb(:index)
+end
+
+get('/list/:id') do
+  id = params.fetch("id").to_i()
+  @list = List.all(id).pop()
+  @tasks = Task.all(id)
+  erb(:list)
 end

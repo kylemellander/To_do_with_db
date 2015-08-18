@@ -1,8 +1,12 @@
+<% if @success_message != nil %>
+<div class="success"><%= @success_message %></div>
+<% end %>
+
 <h2>All the stuff you have to do.</h2>
 
 <ul>
   <% @lists.each() do |list| %>
-  <li><%= list.name() %></li>
+  <li><a href="/list/<%= list.id() %>"><%= list.name() %></a></li>
   <% end %>
 </ul>
 
